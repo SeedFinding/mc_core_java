@@ -1,7 +1,7 @@
-import kaptainwutax.mcutils.gen.PieceInfo;
-import kaptainwutax.mcutils.nbt.NBTIO;
-import kaptainwutax.mcutils.nbt.tag.NBTCompound;
-import kaptainwutax.mcutils.version.MCVersion;
+import com.seedfinding.mccore.gen.PieceInfo;
+import com.seedfinding.mccore.nbt.NBTIO;
+import com.seedfinding.mccore.nbt.tag.NBTCompound;
+import com.seedfinding.mccore.version.MCVersion;
 
 import java.io.File;
 import java.io.IOException;

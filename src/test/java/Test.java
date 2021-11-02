@@ -1,12 +1,10 @@
-import kaptainwutax.mcutils.block.Block;
-import kaptainwutax.mcutils.block.Blocks;
-import kaptainwutax.mcutils.gen.PieceInfo;
-import kaptainwutax.mcutils.nbt.NBTIO;
-import kaptainwutax.mcutils.util.pos.BPos;
-import kaptainwutax.mcutils.version.MCVersion;
+import com.seedfinding.mccore.block.Blocks;
+import com.seedfinding.mccore.gen.PieceInfo;
+import com.seedfinding.mccore.nbt.NBTIO;
+import com.seedfinding.mccore.util.pos.BPos;
+import com.seedfinding.mccore.version.MCVersion;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
 

@@ -1,6 +1,7 @@
-# MCUtils
+# Minecraft Core
 
-Utilities to help when coding Minecraft Generation Librairies
+A dead simple library to store all the Minecraft utilities and data in pure Java
+(intended as a core library)
 
 ## List of Bundled features
 

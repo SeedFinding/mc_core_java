@@ -1,15 +1,16 @@
 plugins {
-    id 'java-library'
-    id 'maven-publish'
-    id "idea"
-    id "jacoco"
-    id 'org.jetbrains.kotlin.jvm' version '1.5.0-RC'
+	id 'signing'
+	id 'java-library'
+	id 'maven-publish'
+	id "idea"
+	id "jacoco"
+	id 'org.jetbrains.kotlin.jvm' version '1.5.31'
 }
 
 group = 'com.seedfinding'
 archivesBaseName = project.name
 
-defaultTasks 'clean', 'test', 'install'
+defaultTasks 'clean', 'test'
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
@@ -19,8 +20,9 @@ java {
 }
 
 repositories {
-    mavenCentral()
-    maven {url "https://jitpack.io"}
+	mavenCentral()
+	maven { url "https://jitpack.io" }
+	maven { url "https://maven.seedfinding.com" }
 }
 
 dependencies {
@@ -31,12 +33,12 @@ dependencies {
 
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
-    testImplementation("org.junit.jupiter:junit-jupiter-api:${jupiterVersion}")
-    testImplementation("org.junit.jupiter:junit-jupiter-params:${jupiterVersion}")
-    testImplementation('org.junit-pioneer:junit-pioneer:1.3.8')
+	testImplementation("org.junit.jupiter:junit-jupiter-api:${jupiterVersion}")
+	testImplementation("org.junit.jupiter:junit-jupiter-params:${jupiterVersion}")
+	testImplementation('org.junit-pioneer:junit-pioneer:1.3.8')
 
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${jupiterVersion}")
-    testRuntimeOnly('org.junit.platform:junit-platform-console:1.7.1')
+	testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${jupiterVersion}")
+	testRuntimeOnly('org.junit.platform:junit-platform-console:1.7.1')
 }
 
 compileJava {
@@ -73,52 +75,54 @@ test {
 
 
 publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            artifactId = "$project.name"
-            from components.java
-            versionMapping {
-                usage('java-api') {
-                    fromResolutionOf('runtimeClasspath')
-                }
-                usage('java-runtime') {
-                    fromResolutionResult()
-                }
-            }
-            pom {
-                name = "$project.name"
-                description = 'An efficient library to provide utilities used in Minecraft World Generation.'
-                url = 'http://www.kaptainwutax.seedfinding.com'
-                licenses {
-                    license {
-                        name = 'MIT License'
-                        url = 'https://opensource.org/licenses/MIT'
-                    }
-                }
-                developers {
-                    developer {
-                        id = 'hube12'
-                        name = 'Neil'
-                    }
-                    developer {
-                        id = 'Kap'
-                        name = 'KaptainWutax'
-                    }
-                }
-                scm {
-                    connection = 'scm:git:https://github.com/kaptainwutax/MCUtils.git'
-                    url = 'https://github.com/kaptainwutax/MCUtils.git'
-                }
-            }
-        }
-    }
-    repositories {
-        maven {
-            def releasesRepoUrl = "https://jitpack.io/com/github/kaptainwutax/mcutils/latest"
-            def snapshotsRepoUrl = "https://jitpack.io/com/github/kaptainwutax/mcutils/snapshots"
-            url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
-        }
-    }
+	publications {
+		mavenJava(MavenPublication) {
+			artifactId = "$project.name"
+			from components.java
+			versionMapping {
+				usage('java-api') {
+					fromResolutionOf('runtimeClasspath')
+				}
+				usage('java-runtime') {
+					fromResolutionResult()
+				}
+			}
+			pom {
+				name = "$project.name"
+				description = 'A dead simple library to store all the Minecraft utilities ' +
+					'and data in pure Java (intended as a core library)'
+				url = 'https://java.seedfinding.com/mccore'
+				licenses {
+					license {
+						name = 'MIT License'
+						url = 'https://opensource.org/licenses/MIT'
+					}
+				}
+				developers {
+					developer {
+						id = 'hube12'
+						name = 'Neil'
+					}
+					developer {
+						id = 'kaptainwutax'
+						name = 'KaptainWutax'
+					}
+				}
+				scm {
+					connection = 'scm:git:https://github.com/SeedFinding/mc_core_java.git'
+					developerConnection = 'scm:git:ssh://github.com/SeedFinding/mc_core_java.git'
+					url = 'https://github.com/SeedFinding/mc_core_java'
+				}
+			}
+		}
+	}
+	repositories {
+		maven {
+			def releasesRepoUrl = "https://nexus.seedfinding.com/service/rest/repository/browse/maven-seedfinding/com/seedfinding/mc_core/"
+			def snapshotsRepoUrl = "https://nexus.seedfinding.com/service/rest/repository/browse/maven-seedfinding-snapshots/com/seedfinding/mc_core/"
+			url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+		}
+	}
 }
 
 javadoc {
@@ -126,3 +130,43 @@ javadoc {
         options.addBooleanOption('html5', true)
     }
 }
+
+signing {
+	if (signing.getSignatory() == null) {
+		System.err.println("Missing configuration driven signing key, defaulting to in memory.")
+		def signingKeyId = findProperty("signingKeyId")
+		def signingKey = findProperty("signingKey")
+		def signingPassword = findProperty("signingPassword")
+		if (signingKey == null || signingKey == null || signingPassword == null) {
+			System.err.println("Missing in memory signing key, defaulting to agent.")
+			useGpgCmd()
+			def s= signing.getSignatory()
+//			if (signing.getSignatory() == null || signing.getSignatory().getKeyId() == null) {
+//				System.err.println("Missing GPG agent.")
+//				gradle.taskGraph.whenReady { taskGraph ->
+//					tasks.findAll { t ->
+//						if (t.name == "signArchives") {
+//							t.enabled(false)
+//							System.err.println("No GPG signing agent, in memory or configuration driven GPG key were found, you can not use the sign method !")
+//						}
+//					}
+//				}
+//			}
+		} else {
+			useInMemoryPgpKeys(signingKeyId, signingKey, signingPassword)
+		}
+	}
+	gradle.taskGraph.whenReady { taskGraph ->
+		tasks.findAll { t ->
+			if (t.name == "signArchives") {
+				if (t.enabled) {
+					t.doLast {
+						println "Signing was a success, congrats !"
+					}
+				}
+			}
+		}
+	}
+	sign publishing.publications.mavenJava
+}
+
