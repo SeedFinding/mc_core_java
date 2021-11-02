@@ -4,10 +4,10 @@ import com.seedfinding.mccore.rand.seed.RegionSeed;
 import com.seedfinding.mccore.util.pos.BPos;
 import com.seedfinding.mccore.version.MCVersion;
 import com.seedfinding.mccore.version.UnsupportedVersion;
-import kaptainwutax.mathutils.util.Mth;
+import com.seedfinding.mcmath.util.Mth;
 import com.seedfinding.mccore.rand.seed.PositionSeed;
-import kaptainwutax.seedutils.lcg.LCG;
-import kaptainwutax.seedutils.rand.JRand;
+import com.seedfinding.mcseed.lcg.LCG;
+import com.seedfinding.mcseed.rand.JRand;
 
 import java.util.Collection;
 

@@ -1,7 +1,7 @@
 package com.seedfinding.mccore;
 
 import com.seedfinding.mccore.rand.ChunkRand;
-import kaptainwutax.seedutils.rand.JRand;
+import com.seedfinding.mcseed.rand.JRand;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

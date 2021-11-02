@@ -1,9 +1,9 @@
 package com.seedfinding.mccore.rand.seed;
 
 import com.seedfinding.mccore.util.data.SeedIterator;
-import kaptainwutax.mathutils.util.Mth;
-import kaptainwutax.seedutils.lcg.LCG;
-import kaptainwutax.seedutils.rand.JRand;
+import com.seedfinding.mcmath.util.Mth;
+import com.seedfinding.mcseed.lcg.LCG;
+import com.seedfinding.mcseed.rand.JRand;
 
 import java.util.ArrayList;
 import java.util.Arrays;

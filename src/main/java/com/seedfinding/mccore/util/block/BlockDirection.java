@@ -1,7 +1,7 @@
 package com.seedfinding.mccore.util.block;
 
 import com.seedfinding.mccore.util.math.Vec3i;
-import kaptainwutax.seedutils.rand.JRand;
+import com.seedfinding.mcseed.rand.JRand;
 
 import java.util.Arrays;
 import java.util.List;

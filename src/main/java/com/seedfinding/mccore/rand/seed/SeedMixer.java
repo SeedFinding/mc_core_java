@@ -1,8 +1,8 @@
 package com.seedfinding.mccore.rand.seed;
 
 
-import kaptainwutax.mathutils.util.Mth;
-import kaptainwutax.seedutils.lcg.LCG;
+import com.seedfinding.mcmath.util.Mth;
+import com.seedfinding.mcseed.lcg.LCG;
 
 @SuppressWarnings("unused")
 public class SeedMixer {

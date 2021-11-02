@@ -5,7 +5,7 @@ import com.seedfinding.mccore.block.Tile;
 import com.seedfinding.mccore.util.data.Identifier;
 import com.seedfinding.mccore.util.math.Vec3i;
 import com.seedfinding.mccore.util.pos.BPos;
-import kaptainwutax.seedutils.rand.JRand;
+import com.seedfinding.mcseed.rand.JRand;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -1,6 +1,6 @@
 package com.seedfinding.mccore.util.math;
 
-import kaptainwutax.seedutils.rand.JRand;
+import com.seedfinding.mcseed.rand.JRand;
 
 import java.util.ArrayList;
 import java.util.List;

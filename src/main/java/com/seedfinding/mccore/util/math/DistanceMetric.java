@@ -1,6 +1,6 @@
 package com.seedfinding.mccore.util.math;
 
-import kaptainwutax.mathutils.util.Mth;
+import com.seedfinding.mcmath.util.Mth;
 
 @FunctionalInterface
 public interface DistanceMetric {

@@ -2,8 +2,8 @@ package com.seedfinding.mccore.rand.seed;
 
 import com.seedfinding.mccore.util.data.SeedIterator;
 import com.seedfinding.mccore.util.data.StringUnhasher;
-import kaptainwutax.mathutils.util.Mth;
-import kaptainwutax.seedutils.rand.JRand;
+import com.seedfinding.mcmath.util.Mth;
+import com.seedfinding.mcseed.rand.JRand;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
