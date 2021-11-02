@@ -311,7 +311,9 @@ public class ChunkRand extends JRand {
 	}
 
 	/**
-	 * Return an int inside the range [minimum,maximum]
+	 * @param minimum the minimum
+	 * @param maximum the maximum
+	 * @return an int inside the range [minimum,maximum]
 	 */
 	public int getInt(int minimum, int maximum) {
 		return getInt(this, minimum, maximum);

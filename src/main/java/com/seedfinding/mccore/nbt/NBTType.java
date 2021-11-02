@@ -1,7 +1,6 @@
 package com.seedfinding.mccore.nbt;
 
 import com.seedfinding.mccore.nbt.tag.*;
-import kaptainwutax.mcutils.nbt.tag.*;
 
 import java.util.HashMap;
 import java.util.Map;

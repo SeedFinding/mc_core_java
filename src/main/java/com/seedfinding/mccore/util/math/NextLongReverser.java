@@ -64,6 +64,7 @@ public class NextLongReverser {
 	 * Has a precondition that structureSeed is 48 bits (its upper 16 bits as a long are 0)
 	 *
 	 * @param structureSeed the 48 bit version of the seed
+	 * @return Lists of 1 or 2 seeds
 	 */
 	public static ArrayList<Long> getSeeds(long structureSeed) {
 		ArrayList<Long> seeds = new ArrayList<>(2);
@@ -90,6 +91,7 @@ public class NextLongReverser {
 	 * Has a precondition that structureSeed is 48 bits (its upper 16 bits as a long are 0)
 	 *
 	 * @param structureSeed the 48 bit version of the seed
+	 * @return list of nextlongs
 	 */
 	public static ArrayList<Long> getNextLongEquivalents(long structureSeed) {
 		ArrayList<Long> nextLongs = new ArrayList<>(2);
