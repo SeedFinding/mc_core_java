@@ -22,12 +22,12 @@ java {
 repositories {
 	mavenCentral()
 	// Use maven { url "https://maven.seedfinding.com" } for releases !
-	maven { url "https://maven-snapshots.seedfinding.com" }
+	maven { url "https://maven.seedfinding.com" }
 }
 
 dependencies {
-    implementation('com.seedfinding:mc_math:0eb505174da8a92550f8ec6efe254e0fa936cc0d') { transitive = false }
-    implementation('com.seedfinding:mc_seed:5518e3ba3ee567fb0b51c15958967f70a6a19e02') { transitive = false }
+    implementation('com.seedfinding:mc_math:1.171.0') { transitive = false }
+    implementation('com.seedfinding:mc_seed:1.171.1') { transitive = false }
 
     // https://mvnrepository.com/artifact/net.lecousin.compression/gzip
     implementation('net.lecousin.compression:gzip:0.1.10')
