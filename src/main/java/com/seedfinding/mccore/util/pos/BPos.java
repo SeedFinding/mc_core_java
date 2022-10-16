@@ -59,7 +59,7 @@ public class BPos extends Vec3i {
 	}
 
 	public BPos relative(BlockDirection direction) {
-		return new BPos(this.getX() + direction.getVector().getX(), this.getY() + direction.getVector().getY(), this.getZ() + direction.getVector().getY());
+		return new BPos(this.getX() + direction.getVector().getX(), this.getY() + direction.getVector().getY(), this.getZ() + direction.getVector().getZ());
 	}
 
 	public BPos relative(BlockDirection direction, int offset) {
