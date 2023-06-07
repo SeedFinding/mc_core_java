@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 
 @SuppressWarnings("unused")
 public enum MCVersion {
+	v1_20("1.20", 20, 0), //June 7, 2023
+
 	v1_19_4("1.19.4", 19, 4), //March 14, 2023
 	v1_19_3("1.19.3", 19, 3), //December 7, 2022
 	v1_19_2("1.19.2", 19, 2), //August 5, 2022
