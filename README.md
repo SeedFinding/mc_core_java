@@ -1,3 +1,5 @@
+[![Build Status](https://jenkins.seedfinding.com/buildStatus/icon?job=mc_java%2Fmc_core_java)](https://jenkins.seedfinding.com/job/mc_java/job/mc_core_java/)
+
 # Minecraft Core
 
 A dead simple library to store all the Minecraft utilities and data in pure Java
