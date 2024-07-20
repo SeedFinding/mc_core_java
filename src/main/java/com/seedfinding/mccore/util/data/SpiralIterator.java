@@ -36,8 +36,8 @@ public class SpiralIterator<T extends Vec3i> implements Iterable<T> {
 	@Override
 	public @NotNull Iterator<T> iterator() {
 		return new Iterator<T>() {
-			private Integer x = null;
-			private Integer z = null;
+			private Integer x = center.getX();
+			private Integer z = center.getZ();
 
 			private float n = 1;
 			private int i = 0;
@@ -53,26 +53,25 @@ public class SpiralIterator<T extends Vec3i> implements Iterable<T> {
 
 			@Override
 			public T next() {
-				if (x == null || z == null) {
-					x = center.getX();
-					z = center.getZ();
-					return center;
-				}
-				int floorN = (int) Math.floor(n);
-				if (j < floorN) {
-					switch (i % 4) {
-						case 0: z += step; break;
-						case 1: x += step; break;
-						case 2: z -= step; break;
-						case 3: x -= step; break;
-					}
-					j++;
+				try {
 					return builder.build(x, 0, z);
+				} finally {
+					int floorN = (int) Math.floor(n);
+					if (j < floorN) {
+						switch (i % 4) {
+							case 0: z += step; break;
+							case 1: x += step; break;
+							case 2: z -= step; break;
+							case 3: x -= step; break;
+						}
+						j++;
+					} else {
+						j = 0;
+						n += 0.5f;
+						i++;
+						return next();
+					}
 				}
-				j = 0;
-				n += 0.5;
-				i++;
-				return next();
 			}
 		};
 	}
