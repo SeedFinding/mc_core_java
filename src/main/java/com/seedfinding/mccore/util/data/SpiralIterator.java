@@ -53,7 +53,7 @@ public class SpiralIterator<T extends Vec3i> implements Iterable<T> {
 				try {
 					return builder.build(x, 0, z);
 				} finally {
-					int floorN = (int) Math.floor(n);
+					int floorN = (int) n;
 					if (j < floorN) {
 						switch (i % 4) {
 							case 0: z += step; break;
