@@ -36,8 +36,8 @@ public class SpiralIterator<T extends Vec3i> implements Iterable<T> {
 	@Override
 	public @NotNull Iterator<T> iterator() {
 		return new Iterator<T>() {
-			private Integer x = center.getX();
-			private Integer z = center.getZ();
+			private int x = center.getX();
+			private int z = center.getZ();
 
 			private float n = 1;
 			private int i = 0;
@@ -45,9 +45,6 @@ public class SpiralIterator<T extends Vec3i> implements Iterable<T> {
 
 			@Override
 			public boolean hasNext() {
-				if (x == null || z == null) {
-					return true;
-				}
 				return x >= lowerBound.getX() && x <= upperBound.getX() && z >= lowerBound.getZ() && z <= upperBound.getZ();
 			}
 
