@@ -75,7 +75,7 @@ public class SpiralIterator<T extends Vec3i> implements Iterable<T> {
 
 	@Override
 	public Spliterator<T> spliterator() {
-		return Spliterators.spliteratorUnknownSize(this.iterator(), Spliterator.ORDERED);
+		return Spliterators.spliterator(this.iterator(), (long) ((upperBound.getX() - lowerBound.getX()) / step + 1) * ((upperBound.getZ() - lowerBound.getZ()) / step + 1), Spliterator.ORDERED);
 	}
 
 	@FunctionalInterface
