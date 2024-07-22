@@ -50,24 +50,22 @@ public class SpiralIterator<T extends Vec3i> implements Iterable<T> {
 
 			@Override
 			public T next() {
-				try {
-					return builder.build(x, 0, z);
-				} finally {
-					int floorN = (int) n;
-					if (j < floorN) {
-						switch (i % 4) {
-							case 0: z += step; break;
-							case 1: x += step; break;
-							case 2: z -= step; break;
-							case 3: x -= step; break;
-						}
-						j++;
-					} else {
-						j = 0;
-						n += 0.5f;
-						i++;
-						return next();
+				T returnValue = builder.build(x, 0, z);
+				int floorN = (int) n;
+				if (j < floorN) {
+					switch (i % 4) {
+						case 0: z += step; break;
+						case 1: x += step; break;
+						case 2: z -= step; break;
+						case 3: x -= step; break;
 					}
+					j++;
+					return returnValue;
+				} else {
+					j = 0;
+					n += 0.5f;
+					i++;
+					return next();
 				}
 			}
 		};
