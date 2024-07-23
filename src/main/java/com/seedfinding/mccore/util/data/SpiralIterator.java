@@ -36,8 +36,8 @@ public class SpiralIterator<T extends Vec3i> implements Iterable<T> {
 	@Override
 	public @NotNull Iterator<T> iterator() {
 		return new Iterator<T>() {
-			private Integer x = null;
-			private Integer z = null;
+			private int x = center.getX();
+			private int z = center.getZ();
 
 			private float n = 1;
 			private int i = 0;
@@ -45,20 +45,13 @@ public class SpiralIterator<T extends Vec3i> implements Iterable<T> {
 
 			@Override
 			public boolean hasNext() {
-				if (x == null || z == null) {
-					return true;
-				}
 				return x >= lowerBound.getX() && x <= upperBound.getX() && z >= lowerBound.getZ() && z <= upperBound.getZ();
 			}
 
 			@Override
 			public T next() {
-				if (x == null || z == null) {
-					x = center.getX();
-					z = center.getZ();
-					return center;
-				}
-				int floorN = (int) Math.floor(n);
+				T returnValue = builder.build(x, 0, z);
+				int floorN = (int) n;
 				if (j < floorN) {
 					switch (i % 4) {
 						case 0: z += step; break;
@@ -67,19 +60,20 @@ public class SpiralIterator<T extends Vec3i> implements Iterable<T> {
 						case 3: x -= step; break;
 					}
 					j++;
-					return builder.build(x, 0, z);
+					return returnValue;
+				} else {
+					j = 0;
+					n += 0.5f;
+					i++;
+					return next();
 				}
-				j = 0;
-				n += 0.5;
-				i++;
-				return next();
 			}
 		};
 	}
 
 	@Override
 	public Spliterator<T> spliterator() {
-		return Spliterators.spliteratorUnknownSize(this.iterator(), Spliterator.ORDERED);
+		return Spliterators.spliterator(this.iterator(), (long) ((upperBound.getX() - lowerBound.getX()) / step + 1) * ((upperBound.getZ() - lowerBound.getZ()) / step + 1), Spliterator.ORDERED);
 	}
 
 	@FunctionalInterface
